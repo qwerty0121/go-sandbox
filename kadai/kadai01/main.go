@@ -2,13 +2,12 @@ package main
 
 import "fmt"
 
-/**
- * 与えられた整数のスライスの要素の並び順を反転させる
- */
+// Reverse は、与えられた整数のスライスの要素の並び順を反転させます。
+// ※slices.Reverse() と同様の動作をします。
 func Reverse(nums []int) {
 	for i := 0; i < len(nums)/2; i++ {
-		a, b := nums[i], nums[len(nums)-1-i]
-		nums[i], nums[len(nums)-1-i] = b, a
+		j := len(nums) - 1 - i
+		nums[i], nums[j] = nums[j], nums[i]
 	}
 }
 
@@ -27,4 +26,11 @@ func main() {
 	nums3 := []int{7}
 	Reverse(nums3)
 	fmt.Println(nums3) // [7]
+
+	// 以下、エッジケース
+
+	// ケース4
+	nums4 := []int{}
+	Reverse(nums4)
+	fmt.Println(nums4) // []
 }
