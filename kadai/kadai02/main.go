@@ -11,9 +11,13 @@ import (
 func CountWords(s string) map[string]int {
 	// 文字列をスペースで分割して単語のスライスを作成
 	words := strings.Fields(s)
+	if len(words) == 0 {
+		return make(map[string]int) // 空のマップを返す
+	}
 
 	// 単語の出現回数をカウントするためのマップを作成
-	m := make(map[string]int)
+	// ※マップの初期容量を単語の数に設定して、メモリの再割り当てを防止
+	m := make(map[string]int, len(words))
 
 	// 単語のスライスをループして、マップに出現回数をカウント
 	for _, word := range words {
