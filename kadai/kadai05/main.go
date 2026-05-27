@@ -15,11 +15,12 @@ type Shape interface {
 
 // Rectangle は四角形を表す構造体です。
 type Rectangle struct {
-	// 横
-	Width int
-	// 縦
-	Height int
+	Width  int // 横
+	Height int // 縦
 }
+
+// RectangleがShapeインターフェースを満たしていることをチェック
+var _ Shape = &Rectangle{}
 
 // Area は四角形の面積を計算するメソッドです。
 // 四角形の面積を返却します。
@@ -29,14 +30,17 @@ func (r *Rectangle) Area() float64 {
 
 // Circle は円を表す構造体です。
 type Circle struct {
-	// 半径
-	Radius int
+	Radius int // 半径
 }
+
+// CircleがShapeインターフェースを満たしていることをチェック
+var _ Shape = &Circle{}
 
 // Area は円の面積を計算するメソッドです。
 // 円の面積を返却します。
-func (r *Circle) Area() float64 {
-	return math.Pow(float64(r.Radius), 2) * math.Pi
+func (c *Circle) Area() float64 {
+	r := float64(c.Radius)
+	return r * r * math.Pi
 }
 
 func main() {
