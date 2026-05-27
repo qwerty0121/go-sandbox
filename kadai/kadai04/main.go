@@ -21,18 +21,15 @@ func Divide(a, b int) (int, error) {
 }
 
 func main() {
-	// ケース1
-	a1, b1 := 10, 2
-	result1, err := Divide(a1, b1)
-	fmt.Printf("ケース1: %v / %v = %v, %v\n", a1, b1, result1, err)
+	testCases := []struct{ a, b int }{
+		{10, 2},
+		{5, 0},
+		{0, 3},
+	}
 
-	// ケース2
-	a2, b2 := 5, 0
-	result2, err := Divide(a2, b2)
-	fmt.Printf("ケース2: %v / %v = %v, %v\n", a2, b2, result2, err)
-
-	// ケース3
-	a3, b3 := 0, 3
-	result3, err := Divide(a3, b3)
-	fmt.Printf("ケース3: %v / %v = %v, %v\n", a3, b3, result3, err)
+	for i, testCase := range testCases {
+		fmt.Printf("--- ケース %v ---\n", i+1)
+		result, err := Divide(testCase.a, testCase.b)
+		fmt.Printf("%v / %v = %v, %v\n", testCase.a, testCase.b, result, err)
+	}
 }
